@@ -91,3 +91,34 @@ export async function deleteCustomer(id) {
   });
   return handle(res);
 }
+
+// ---------- Topic files ----------
+export async function uploadTopicFile(key, file) {
+  const form = new FormData();
+  form.append("file", file);
+  const res = await fetch(`${BASE}/topics/${key}/files`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: form,
+  });
+  return handle(res);
+}
+
+export async function getTopicFiles(key) {
+  const res = await fetch(`${BASE}/topics/${key}/files`, { headers: authHeaders() });
+  return handle(res);
+}
+
+export async function downloadTopicFile(key, id, filename) {
+  const res = await fetch(`${BASE}/topics/${key}/files/${id}/download`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("ดาวน์โหลดไฟล์ไม่สำเร็จ");
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}

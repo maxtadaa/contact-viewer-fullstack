@@ -1,40 +1,40 @@
 import React from "react";
-import { Users, BookOpen, Contact2, LayoutGrid, ArrowRight, LogOut } from "lucide-react";
+import { MonitorCheck, ClipboardList, LifeBuoy, BookOpen, ArrowRight, LogOut } from "lucide-react";
 import { getUser, clearSession } from "../api";
 import { FadeInStagger, FadeInItem } from "../components/FadeIn";
 
-const SECTIONS = [
+export const SECTIONS = [
   {
-    key: "dashboard",
-    icon: Users,
-    title: "รายชื่อลูกค้า",
-    subtitle: "Customer Directory",
-    description: "ค้นหา ดู และจัดการข้อมูลลูกค้าทั้งหมด",
+    key: "monitoring",
+    icon: MonitorCheck,
+    title: "คู่มือเฝ้าระวังระบบ",
+    subtitle: "Manual Monitoring",
+    description: "คู่มือและขั้นตอนการเฝ้าระวัง ตรวจสอบสถานะระบบทั้งหมด",
     enabled: true,
   },
   {
-    key: "handbook",
+    key: "sop",
+    icon: ClipboardList,
+    title: "คู่มือการปฏิบัติงาน",
+    subtitle: "Standard Operating Procedure (SOP)",
+    description: "คู่มือและขั้นตอนการทำงานมาตรฐานของทีม Servicedesk",
+    enabled: true,
+  },
+  {
+    key: "support",
+    icon: LifeBuoy,
+    title: "คู่มือแก้ปัญหาเบื้องต้น",
+    subtitle: "1st Tier Technical Support",
+    description: "คู่มือแก้ปัญหาที่พบบ่อย สำหรับช่วยเหลือผู้ใช้งาน",
+    enabled: true,
+  },
+  {
+    key: "knowledge-base",
     icon: BookOpen,
-    title: "คู่มือการใช้งาน",
+    title: "ศูนย์รวมความรู้",
     subtitle: "Knowledge Base",
-    description: "แนวทาง ทิป และข้อมูลความรู้จากทีมงาน",
-    enabled: false,
-  },
-  {
-    key: "staff",
-    icon: Contact2,
-    title: "ทำเนียบพนักงาน",
-    subtitle: "Staff Directory",
-    description: "ค้นหาข้อมูลติดต่อพนักงานในองค์กร",
-    enabled: false,
-  },
-  {
-    key: "services",
-    icon: LayoutGrid,
-    title: "บริการอื่นๆ",
-    subtitle: "Other Services",
-    description: "บริการและเครื่องมือเชื่อมต่ออื่นๆ ขององค์กร",
-    enabled: false,
+    description: "รวมบทความ เคล็ดลับ และความรู้ที่แชร์กันภายในองค์กร",
+    enabled: true,
   },
 ];
 

@@ -5,6 +5,7 @@ import { testConnection } from "./config/db.js";
 import authRoutes from "./routes/auth.js";
 import uploadRoutes from "./routes/upload.js";
 import customerRoutes from "./routes/customers.js";
+import topicFilesRoutes from "./routes/topicFiles.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.get("/api/health", (req, res) => res.json({ ok: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/customers", customerRoutes);
+app.use("/api/topics", topicFilesRoutes);
 
 const PORT = process.env.PORT || 4000;
 

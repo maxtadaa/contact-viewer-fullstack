@@ -34,3 +34,17 @@ CREATE TABLE IF NOT EXISTS customers (
   INDEX idx_name (name),
   INDEX idx_company (company)
 );
+
+-- ไฟล์ที่อัปโหลดแนบไว้ในแต่ละหน้าหัวข้อ (เก็บไฟล์จริงไว้ที่ server/uploads, เก็บ metadata ไว้ที่นี่)
+CREATE TABLE IF NOT EXISTS topic_files (
+  id           INT AUTO_INCREMENT PRIMARY KEY,
+  topic_key    VARCHAR(50) NOT NULL,
+  filename     VARCHAR(255) NOT NULL,
+  stored_name  VARCHAR(255) NOT NULL,
+  mime_type    VARCHAR(100),
+  size         INT,
+  uploaded_by  INT,
+  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (uploaded_by) REFERENCES users(id) ON DELETE SET NULL,
+  INDEX idx_topic_key (topic_key)
+);
