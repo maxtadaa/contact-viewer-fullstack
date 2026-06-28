@@ -71,4 +71,25 @@ router.post("/microsoft", async (req, res) => {
   }
 });
 
+// ==================== Demo / ทดลองดู UI (ไม่ผ่าน Microsoft จริง) ====================
+// เปิดใช้ได้เฉพาะตอนตั้ง ENABLE_DEV_LOGIN=true ใน .env (ห้ามเปิดบน production)
+router.post("/dev-login", async (req, res) => {
+  if (process.env.ENABLE_DEV_LOGIN !== "true") {
+    return res.status(403).json({ error: "ปิดการใช้งานโหมดทดลอง" });
+  }
+  try {
+    const result = await upsertUserAndIssueToken({
+      provider: "demo",
+      providerId: "demo-user",
+      email: "demo@example.com",
+      name: "ผู้ใช้ทดลอง",
+      picture: null,
+    });
+    res.json(result);
+  } catch (err) {
+    console.error("Dev login error:", err.message);
+    res.status(500).json({ error: "เข้าสู่ระบบทดลองไม่สำเร็จ" });
+  }
+});
+
 export default router;

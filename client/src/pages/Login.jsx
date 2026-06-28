@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { loginWithMicrosoft } from "../api";
+import { loginWithMicrosoft, loginDemo } from "../api";
 import { getMicrosoftIdToken } from "../auth/msal";
 import { FadeInStagger, FadeInItem } from "../components/FadeIn";
+
+const SHOW_DEMO_LOGIN = import.meta.env.VITE_ENABLE_DEV_LOGIN === "true";
 
 export default function Login({ onLogin }) {
   const [error, setError] = useState("");
@@ -16,6 +18,19 @@ export default function Login({ onLogin }) {
       onLogin(user);
     } catch (e) {
       setError(e.message || "เข้าสู่ระบบด้วย Microsoft ไม่สำเร็จ");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleDemo() {
+    setError("");
+    setBusy(true);
+    try {
+      const user = await loginDemo();
+      onLogin(user);
+    } catch (e) {
+      setError(e.message || "เข้าสู่ระบบทดลองไม่สำเร็จ");
     } finally {
       setBusy(false);
     }
@@ -54,6 +69,16 @@ export default function Login({ onLogin }) {
               <MicrosoftIcon />
               {busy ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบด้วย Microsoft"}
             </button>
+
+            {SHOW_DEMO_LOGIN && (
+              <button
+                onClick={handleDemo}
+                disabled={busy}
+                className="w-full flex items-center justify-center gap-2 border border-white/15 rounded-lg py-2.5 text-sm font-medium text-slate-300 hover:bg-white/5 disabled:opacity-60 transition-colors"
+              >
+                เข้าสู่ระบบแบบทดลอง (Demo)
+              </button>
+            )}
 
             {error && <p className="text-sm text-rose-400 text-center">{error}</p>}
           </div>

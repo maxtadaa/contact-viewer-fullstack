@@ -47,6 +47,13 @@ export async function loginWithMicrosoft(credential) {
   return data.user;
 }
 
+export async function loginDemo() {
+  const res = await fetch(`${BASE}/auth/dev-login`, { method: "POST" });
+  const data = await handle(res);
+  setSession(data.token, data.user);
+  return data.user;
+}
+
 // ---------- Excel ----------
 export async function uploadExcel(file) {
   const form = new FormData();

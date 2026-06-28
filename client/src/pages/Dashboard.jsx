@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Search, Upload, Phone, Mail, Building2, MapPin, X, Users, LogOut,
-  ChevronLeft, ChevronRight, Pencil, Trash2, Loader2,
+  ChevronLeft, ChevronRight, Pencil, Trash2, Loader2, ArrowLeft,
 } from "lucide-react";
 import {
   getCustomers, getCompanies, uploadExcel, updateCustomer, deleteCustomer,
@@ -19,7 +19,7 @@ const initials = (n) => {
   return (p[0]?.[0] || "") + (p[1]?.[0] || "");
 };
 
-export default function Dashboard({ onLogout }) {
+export default function Dashboard({ onLogout, onBack }) {
   const user = getUser();
   const [rows, setRows] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -93,6 +93,8 @@ export default function Dashboard({ onLogout }) {
       <header className="hero-bg border-b border-white/10 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
+            <button onClick={onBack} title="กลับไปหน้าเมนู"
+              className="text-slate-400 hover:text-white p-1.5 -ml-1.5"><ArrowLeft className="w-4 h-4" /></button>
             <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-8 w-auto" />
             <div>
               <h1 className="font-bold text-white leading-tight">รายชื่อลูกค้า</h1>
