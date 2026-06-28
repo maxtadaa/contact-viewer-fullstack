@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# env files (keep .env.example tracked)
+.env
+.env.local
+
+# build output
+dist/
+build/
+
+# logs
+npm-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor/local tooling
+.claude/settings.local.json

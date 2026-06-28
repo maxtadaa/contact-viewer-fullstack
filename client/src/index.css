@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { -webkit-tap-highlight-color: transparent; }
+
+.hero-bg {
+  background-color: #060810;
+  background-image:
+    radial-gradient(ellipse 620px 520px at 80% 10%, rgba(255, 150, 60, 0.35), transparent 60%),
+    radial-gradient(ellipse 760px 620px at 95% 35%, rgba(56, 145, 255, 0.55), transparent 62%),
+    radial-gradient(ellipse 900px 760px at 102% 75%, rgba(10, 45, 130, 0.65), transparent 68%),
+    radial-gradient(ellipse 700px 500px at 10% 100%, rgba(56, 145, 255, 0.12), transparent 70%);
+  background-repeat: no-repeat;
+}
