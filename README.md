@@ -1,6 +1,6 @@
-# ระบบดูข้อมูลคอนแทคลูกค้า (Customer Contact Viewer)
+# ระบบ Share Knowledge Base Servicedesk
 
-นำเข้าข้อมูลลูกค้าจากไฟล์ Excel เก็บถาวรใน MySQL ดู/ค้นหา/แก้ไขผ่านเว็บ
+นำเข้าข้อมูลลจากไฟล์ Excel word powerpoint เก็บถาวรใน MySQL ดู/ค้นหา/แก้ไขผ่านเว็บ
 ล็อกอินด้วย Microsoft (Outlook)
 
 ## โครงสร้าง
