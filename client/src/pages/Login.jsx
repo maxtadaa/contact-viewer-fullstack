@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { loginWithMicrosoft } from "../api";
 import { getMicrosoftIdToken } from "../auth/msal";
+import { FadeInStagger, FadeInItem } from "../components/FadeIn";
 
 export default function Login({ onLogin }) {
   const [error, setError] = useState("");
@@ -22,36 +23,46 @@ export default function Login({ onLogin }) {
 
   return (
     <div className="min-h-screen hero-bg flex items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-3xl text-center">
-        <img
-          src="/logo-tcc-transparent.png"
-          alt="TCC Technology Group — 25th Anniversary"
-          className="h-40 sm:h-48 md:h-56 w-auto mx-auto mb-10"
-        />
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-          Welcome to the <span className="text-sky-400">Knowledge Base Servicedesk</span>
-        </h1>
-        <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mb-10">
-          Your central hub to learn, share, and grow together — explore guides, tips, and insights from across the team.
-        </p>
+      <FadeInStagger className="w-full max-w-3xl flex flex-col items-center text-center">
+        <FadeInItem>
+          <img
+            src="/logo-tcc-transparent.png"
+            alt="TCC Technology Group — 25th Anniversary"
+            className="h-40 sm:h-48 md:h-56 w-auto mx-auto mb-10"
+          />
+        </FadeInItem>
 
-        <div className="max-w-sm mx-auto bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl shadow-black/40">
-          <button
-            onClick={handleMicrosoft}
-            disabled={busy}
-            className="w-full flex items-center justify-center gap-2.5 bg-white rounded-lg py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100 disabled:opacity-60 transition-colors"
-          >
-            <MicrosoftIcon />
-            {busy ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบด้วย Microsoft"}
-          </button>
+        <FadeInItem>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+            Welcome to the <span className="text-sky-400">Knowledge Base Servicedesk</span>
+          </h1>
+        </FadeInItem>
 
-          {error && <p className="text-sm text-rose-400 text-center">{error}</p>}
-        </div>
+        <FadeInItem>
+          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mb-10">
+            Your central hub to learn, share, and grow together — explore guides, tips, and insights from across the team.
+          </p>
+        </FadeInItem>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
-          ใช้บัญชีองค์กรของคุณเพื่อเข้าสู่ระบบ
-        </p>
-      </div>
+        <FadeInItem className="w-full">
+          <div className="max-w-sm mx-auto bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl shadow-black/40">
+            <button
+              onClick={handleMicrosoft}
+              disabled={busy}
+              className="w-full flex items-center justify-center gap-2.5 bg-white rounded-lg py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100 disabled:opacity-60 transition-colors"
+            >
+              <MicrosoftIcon />
+              {busy ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบด้วย Microsoft"}
+            </button>
+
+            {error && <p className="text-sm text-rose-400 text-center">{error}</p>}
+          </div>
+
+          <p className="text-center text-xs text-slate-500 mt-6">
+            ใช้บัญชีองค์กรของคุณเพื่อเข้าสู่ระบบ
+          </p>
+        </FadeInItem>
+      </FadeInStagger>
     </div>
   );
 }
