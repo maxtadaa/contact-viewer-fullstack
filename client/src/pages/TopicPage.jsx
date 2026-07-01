@@ -70,7 +70,7 @@ export default function TopicPage({ section, onBack, onLogout }) {
             <button onClick={onBack} title="กลับไปหน้าเมนู" className="text-slate-400 hover:text-white p-1.5 -ml-1.5">
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-12 w-auto" />
+            <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-24 w-auto" />
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-slate-300 hidden md:block max-w-[160px] truncate">{user?.name || user?.email}</span>
