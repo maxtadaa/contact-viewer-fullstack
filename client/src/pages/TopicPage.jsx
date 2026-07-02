@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { ArrowLeft, LogOut, Upload, FileText, Download, Loader2 } from "lucide-react";
-import { getUser, clearSession, uploadTopicFile, getTopicFiles, downloadTopicFile } from "../api";
+import { ArrowLeft, LogOut, Upload, FileText, Download, Eye, Trash2, Loader2 } from "lucide-react";
+import { getUser, clearSession, uploadTopicFile, getTopicFiles, downloadTopicFile, viewTopicFile, deleteTopicFile } from "../api";
 import { FadeInStagger, FadeInItem } from "../components/FadeIn";
 
 function formatSize(bytes) {
@@ -54,6 +54,24 @@ export default function TopicPage({ section, onBack, onLogout }) {
     }
   }
 
+  async function handleDelete(f) {
+    if (!window.confirm(`ลบไฟล์ "${f.filename}" ใช่หรือไม่?`)) return;
+    try {
+      await deleteTopicFile(key, f.id);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleView(f) {
+    try {
+      await viewTopicFile(key, f.id);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   async function handleDownload(f) {
     try {
       await downloadTopicFile(key, f.id, f.filename);
@@ -70,7 +88,7 @@ export default function TopicPage({ section, onBack, onLogout }) {
             <button onClick={onBack} title="กลับไปหน้าเมนู" className="text-slate-400 hover:text-white p-1.5 -ml-1.5">
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-24 w-auto" />
+            <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-24 w-auto logo-glow" />
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-slate-300 hidden md:block max-w-[160px] truncate">{user?.name || user?.email}</span>
@@ -135,11 +153,17 @@ export default function TopicPage({ section, onBack, onLogout }) {
                       <div className="min-w-0 flex-1">
                         <div className="text-sm text-white truncate">{f.filename}</div>
                         <div className="text-xs text-slate-500">
-                          {formatSize(f.size)} · {f.uploaded_by_name || "-"} · {new Date(f.created_at).toLocaleDateString("th-TH")}
+                          {formatSize(f.size)}
                         </div>
                       </div>
+                      <button onClick={() => handleView(f)} title="เปิดดูไฟล์" className="text-slate-400 hover:text-sky-400 p-1.5 shrink-0">
+                        <Eye className="w-4 h-4" />
+                      </button>
                       <button onClick={() => handleDownload(f)} title="ดาวน์โหลด" className="text-slate-400 hover:text-sky-400 p-1.5 shrink-0">
                         <Download className="w-4 h-4" />
+                      </button>
+                      <button onClick={() => handleDelete(f)} title="ลบไฟล์" className="text-slate-400 hover:text-rose-400 p-1.5 shrink-0">
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </li>
                   ))}

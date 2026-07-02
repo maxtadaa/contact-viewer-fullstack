@@ -4,6 +4,112 @@
 
 html { -webkit-tap-highlight-color: transparent; }
 
+@keyframes logo-glow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 8px rgba(56, 189, 248, 0.55))
+      drop-shadow(0 0 22px rgba(99, 102, 241, 0.3));
+  }
+  33% {
+    filter:
+      drop-shadow(0 0 14px rgba(99, 102, 241, 0.7))
+      drop-shadow(0 0 36px rgba(192, 132, 252, 0.35));
+  }
+  66% {
+    filter:
+      drop-shadow(0 0 16px rgba(56, 189, 248, 0.8))
+      drop-shadow(0 0 40px rgba(56, 189, 248, 0.4));
+  }
+}
+
+.logo-glow {
+  animation: logo-glow 3s ease-in-out infinite;
+}
+
+@keyframes border-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(56, 189, 248, 0.35),
+      0 0 40px rgba(99, 102, 241, 0.18),
+      0 6px 28px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgba(56, 189, 248, 0.65),
+      0 0 70px rgba(99, 102, 241, 0.32),
+      0 6px 28px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.btn-ms-wrap {
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc, #38bdf8);
+  background-size: 250% 250%;
+  animation: border-spin 3.5s ease infinite;
+  border-radius: 16px;
+  padding: 1.5px;
+}
+
+.btn-ms-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #080d1c 0%, #0f1a35 100%);
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+.btn-ms-inner:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0d1528 0%, #152040 100%);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.btn-ms-inner:active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-ms-inner:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -250% center; }
+  100% { background-position: 250% center; }
+}
+
+.shimmer-text {
+  background-image: linear-gradient(
+    110deg,
+    #e2e8f0 20%,
+    #7dd3fc 38%,
+    #bae6fd 44%,
+    #ffffff 50%,
+    #bae6fd 56%,
+    #7dd3fc 62%,
+    #e2e8f0 80%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
 .hero-bg {
   background-color: #060810;
   background-image:

@@ -43,38 +43,38 @@ export default function Login({ onLogin }) {
           <img
             src="/logo-tcc-transparent.png"
             alt="TCC Technology Group — 25th Anniversary"
-            className="h-40 sm:h-48 md:h-56 w-auto mx-auto mb-10"
+            className="h-40 sm:h-48 md:h-56 w-auto mx-auto mb-10 logo-glow"
           />
         </FadeInItem>
 
         <FadeInItem>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-            Welcome to the <span className="text-sky-400">Knowledge Base Servicedesk</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 shimmer-text">
+            Welcome to the Knowledge Base Servicedesk
           </h1>
         </FadeInItem>
 
         <FadeInItem>
-          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mb-10">
-            Your central hub to learn, share, and grow together — explore guides, tips, and insights from across the team.
+          <p className="text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            <span className="text-slate-300">The central hub for collecting information, exchanging insights, and sharing knowledge</span>
+            <span className="text-slate-500"> — </span>
+            <span className="text-sky-400/80">empowering the Servicedesk team to learn, develop, and grow together.</span>
           </p>
         </FadeInItem>
 
         <FadeInItem className="w-full">
-          <div className="max-w-sm mx-auto bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl shadow-black/40">
-            <button
-              onClick={handleMicrosoft}
-              disabled={busy}
-              className="w-full flex items-center justify-center gap-2.5 bg-white rounded-lg py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100 disabled:opacity-60 transition-colors"
-            >
-              <MicrosoftIcon />
-              {busy ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบด้วย Microsoft"}
-            </button>
+          <div className="max-w-xs mx-auto space-y-5">
+            <div className="btn-ms-wrap">
+              <button onClick={handleMicrosoft} disabled={busy} className="btn-ms-inner">
+                <MicrosoftIcon />
+                {busy ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบด้วย Microsoft"}
+              </button>
+            </div>
 
             {SHOW_DEMO_LOGIN && (
               <button
                 onClick={handleDemo}
                 disabled={busy}
-                className="w-full flex items-center justify-center gap-2 border border-white/15 rounded-lg py-2.5 text-sm font-medium text-slate-300 hover:bg-white/5 disabled:opacity-60 transition-colors"
+                className="w-full flex items-center justify-center gap-2 border border-white/15 rounded-xl py-3 text-sm font-medium text-slate-300 hover:bg-white/5 disabled:opacity-60 transition-colors"
               >
                 เข้าสู่ระบบแบบทดลอง (Demo)
               </button>
@@ -83,8 +83,8 @@ export default function Login({ onLogin }) {
             {error && <p className="text-sm text-rose-400 text-center">{error}</p>}
           </div>
 
-          <p className="text-center text-xs text-slate-500 mt-6">
-            ใช้บัญชีองค์กรของคุณเพื่อเข้าสู่ระบบ
+          <p className="text-center text-xs text-slate-500 mt-8">
+            ใช้บัญชี Microsoft 365 ขององค์กรเพื่อเข้าสู่ระบบ
           </p>
         </FadeInItem>
       </FadeInStagger>
@@ -94,7 +94,7 @@ export default function Login({ onLogin }) {
 
 function MicrosoftIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 23 23" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 23 23" aria-hidden="true">
       <rect x="1" y="1" width="10" height="10" fill="#F25022" />
       <rect x="12" y="1" width="10" height="10" fill="#7FBA00" />
       <rect x="1" y="12" width="10" height="10" fill="#00A4EF" />

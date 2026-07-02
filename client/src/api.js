@@ -122,3 +122,19 @@ export async function downloadTopicFile(key, id, filename) {
   a.remove();
   URL.revokeObjectURL(url);
 }
+
+export async function deleteTopicFile(key, id) {
+  const res = await fetch(`${BASE}/topics/${key}/files/${id}`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+  return handle(res);
+}
+
+export async function viewTopicFile(key, id) {
+  const res = await fetch(`${BASE}/topics/${key}/files/${id}/view`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("เปิดไฟล์ไม่สำเร็จ");
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  window.open(url, "_blank", "noopener");
+}

@@ -50,7 +50,7 @@ export default function Hub({ onSelect, onLogout }) {
     <div className="min-h-screen hero-bg font-sans">
       <header className="border-b border-white/10">
         <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
-          <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-24 w-auto" />
+          <img src="/logo-tcc-transparent.png" alt="TCC Technology Group — 25th Anniversary" className="h-24 w-auto logo-glow" />
           <div className="flex items-center gap-3">
             <span className="text-sm text-slate-300 hidden md:block max-w-[160px] truncate">{user?.name || user?.email}</span>
             <button onClick={doLogout} title="ออกจากระบบ" className="text-slate-400 hover:text-white p-1.5">
@@ -63,13 +63,13 @@ export default function Hub({ onSelect, onLogout }) {
       <div className="max-w-5xl mx-auto px-6 py-14">
         <FadeInStagger className="flex flex-col items-center text-center">
           <FadeInItem>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">
-              เลือกข้อมูลที่ต้องการดู
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-widest leading-tight mb-3 uppercase shimmer-text">
+              TCC TECHNOLOGY - SERVICEDESK
             </h1>
           </FadeInItem>
           <FadeInItem>
-            <p className="text-slate-400 text-base mb-12">
-              เลือกเมนูด้านล่างเพื่อเข้าสู่ส่วนข้อมูลที่ต้องการ
+            <p className="text-sky-400 text-base font-semibold tracking-widest mb-12 uppercase">
+              OPERATIONS KNOWLEDGE HUB
             </p>
           </FadeInItem>
 

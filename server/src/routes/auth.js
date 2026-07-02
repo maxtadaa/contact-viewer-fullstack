@@ -35,6 +35,7 @@ async function upsertUserAndIssueToken({ provider, providerId, email, name, pict
 // ==================== Microsoft (Outlook) ====================
 // ถ้าตั้ง MS_TENANT_ID = id ของ tenant องค์กร จะตรวจสอบเข้มงวดเฉพาะ tenant นั้น
 // ถ้าไม่ตั้ง จะใช้ "common" (รับได้ทุก tenant)
+const MULTI_TENANT = ["common", "organizations"];
 const tenant = process.env.MS_TENANT_ID || "common";
 const msJwks = createRemoteJWKSet(
   new URL(`https://login.microsoftonline.com/${tenant}/discovery/v2.0/keys`)
@@ -47,8 +48,8 @@ router.post("/microsoft", async (req, res) => {
     if (!credential) return res.status(400).json({ error: "ไม่พบ credential" });
 
     const verifyOpts = { audience: process.env.MS_CLIENT_ID };
-    // ถ้าระบุ tenant ชัดเจน ให้ตรวจ issuer ด้วยเพื่อความปลอดภัย
-    if (process.env.MS_TENANT_ID) {
+    // multi-tenant (common/organizations) — issuer ในแต่ละ token ต่างกันตาม tenant จริง จึงข้ามการตรวจ
+    if (process.env.MS_TENANT_ID && !MULTI_TENANT.includes(process.env.MS_TENANT_ID)) {
       verifyOpts.issuer = `https://login.microsoftonline.com/${process.env.MS_TENANT_ID}/v2.0`;
     }
 
